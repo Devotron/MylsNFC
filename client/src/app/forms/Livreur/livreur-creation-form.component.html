@@ -1,0 +1,27 @@
+<clr-modal [(clrModalOpen)]="showModal">
+    <h3 class="modal-title">Ajouter un livreur</h3>
+        <div class="modal-body">
+            <form [formGroup]="livreurForm" (ngSubmit)="submit()">
+            <section class="form-block">
+                <label>Informations à saisir :</label>
+                <div class="form-group">
+                    <label for="nomLivreur">Nom</label>
+                    <label for="nomLivreur" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm"
+                           [class.invalid]="livreurForm.get('nom').invalid && (livreurForm.get('nom').dirty || livreurForm.get('nom').touched)">
+                        <input id="nomLivreur" type="text" formControlName="nom">
+                        <span class="tooltip-content">
+                        Un nom est requis.
+                        </span>
+                    </label>
+                </div>
+            </section>
+        </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline" (click)="closeModal()">Annuler</button>
+            <button type="submit" class="btn btn-primary" (click)="submit()">Ok</button>
+        </div>
+</clr-modal>
+
+
+

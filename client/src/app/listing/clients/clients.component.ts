@@ -4,15 +4,12 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 import { Component } from '@angular/core';
-import {Livraison} from "../models/livraison.model";
 
 @Component({
-    styleUrls: ['./about.component.scss'],
-    templateUrl: './about.component.html'
+    styleUrls: ['./clients.component.scss'],
+    templateUrl: './clients.component.html'
 })
-export class AboutComponent {
-
-    livraisons: Livraison;
+export class ClientsComponent {
 
     open: Boolean = false;
     lat: number = 43.703769;

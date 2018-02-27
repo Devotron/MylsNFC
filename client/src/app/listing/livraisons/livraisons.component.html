@@ -1,0 +1,15 @@
+<clr-datagrid>
+    <clr-dg-column>Ref Livraison</clr-dg-column>
+    <clr-dg-column>Ref Colis</clr-dg-column>
+    <clr-dg-column>Position actuelle</clr-dg-column>
+    <clr-dg-column>Etat</clr-dg-column>
+
+    <clr-dg-row *ngFor="let livraison of livraisons1">
+        <clr-dg-cell>{{livraison.id}}</clr-dg-cell>
+        <clr-dg-cell>{{livraison.nom}}</clr-dg-cell>
+        <clr-dg-cell>(lat: {{livraison}}, lng: {{livraison.position.longitude}})</clr-dg-cell>
+    </clr-dg-row>
+
+    <clr-dg-footer>{{livreurs1.length}} livreurs</clr-dg-footer>
+</clr-datagrid>
+

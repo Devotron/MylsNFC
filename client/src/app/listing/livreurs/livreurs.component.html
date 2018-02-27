@@ -1,0 +1,18 @@
+<!--
+ id: number;
+ nom: string;
+ position: Position;
+-->
+<clr-datagrid>
+    <clr-dg-column>Id</clr-dg-column>
+    <clr-dg-column>Nom</clr-dg-column>
+    <clr-dg-column>Position</clr-dg-column>
+
+    <clr-dg-row *ngFor="let livreur of livreurs1">
+        <clr-dg-cell>{{livreur.id}}</clr-dg-cell>
+        <clr-dg-cell>{{livreur.nom}}</clr-dg-cell>
+        <clr-dg-cell>(lat: {{livreur.position.latitude}}, lng: {{livreur.position.longitude}})</clr-dg-cell>
+    </clr-dg-row>
+
+    <clr-dg-footer>{{livreurs1.length}} livreurs</clr-dg-footer>
+</clr-datagrid>

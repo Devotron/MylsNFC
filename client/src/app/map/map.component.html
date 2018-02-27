@@ -1,0 +1,22 @@
+<div class="card">
+    <div class="card-img">
+        <agm-map [latitude]="lat" [longitude]="lng" [minZoom]="16">
+            <agm-marker [latitude]="lat" [longitude]="lng" ></agm-marker>
+        </agm-map>
+    </div>
+    <div class="card-block">
+        <h4 class="card-title">Suivit du colis {{ livraison.libelle | lowercase }}</h4>
+        <p class="card-text">
+        </p>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">Colis à destination de :</li>
+        <li class="list-group-item">Livré par :</li>
+    </ul>
+    <div class="card-footer">
+        <a href="..." class="btn btn-sm btn-link">Action 1</a>
+        <a href="..." class="btn btn-sm btn-link">Action 2</a>
+    </div>
+</div>
+
+
