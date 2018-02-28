@@ -1,3 +1,18 @@
-"# MylsNFC" 
-bd file : https://ufile.io/5buy1  
-add this to \Users\XXX\AppData\Roaming\NetBeans\Derby
+# Projet MylsNFC
+
+
+Projet réalisé dans le cadre du master 2 MIAGE MBDS.
+
+Ce projet est découpé en 2 parties : 
+Une première partie API REST JEE et client Angular afin de poser les bases du projet pour la seconde partie, suivi du developpement d'une application android utilisant la technologie NFC.  
+
+- Rendu JEE : voir la release JEE
+- Rendu NFC : voir la release NFC 
+
+Equipe : 
+- Michaël Gianfaldone,
+- Florian Muller,
+- Frédéric Testanière.
+
+
+
