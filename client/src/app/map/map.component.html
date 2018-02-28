@@ -1,3 +1,14 @@
+<ng-container *ngIf="!livraison" >
+    <clr-alert [clrAlertType]="'alert-warning'" [clrAlertClosable]="false">
+        <div clr-alert-item class="alert-item">
+        <span class="alert-text">
+            Aucune livraison avec cette reference
+        </span>
+        </div>
+    </clr-alert>
+</ng-container>
+
+<ng-container *ngIf="livraison" >
 <div class="card">
     <div class="card-img">
         <agm-map [latitude]="lat" [longitude]="lng" [minZoom]="16">
@@ -5,18 +16,24 @@
         </agm-map>
     </div>
     <div class="card-block">
-        <h4 class="card-title">Suivit du colis {{ livraison.libelle | lowercase }}</h4>
+        <h4 class="card-title">Suivit du colis {{livraison?.id }}</h4>
         <p class="card-text">
+            <ng-container [ngSwitch]="livraison?.state">
+            <td *ngSwitchCase="etats.EN_ATTENTE">Etat : <span class="label label-warning">En attente</span></td>
+            <td *ngSwitchCase="etats.EN_COURS">Etat : <span class="label label-info">En cours</span></td>
+            <td *ngSwitchCase="etats.LIVRE">Etat : <span class="label label-success">Livré</span></td>
+            <td *ngSwitchDefault>default</td>
+            </ng-container>
         </p>
     </div>
     <ul class="list-group list-group-flush">
-        <li class="list-group-item">Colis à destination de :</li>
-        <li class="list-group-item">Livré par :</li>
+        <li class="list-group-item">Colis à destination de : </li>
+        <li class="list-group-item">Livré par : {{livreur?.name}}</li>
     </ul>
     <div class="card-footer">
-        <a href="..." class="btn btn-sm btn-link">Action 1</a>
-        <a href="..." class="btn btn-sm btn-link">Action 2</a>
+        <!--<a href="..." class="btn btn-sm btn-link">Action 1</a>
+        <a href="..." class="btn btn-sm btn-link">Action 2</a>-->
     </div>
 </div>
-
+</ng-container>
 

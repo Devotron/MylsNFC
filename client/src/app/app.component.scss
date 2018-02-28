@@ -4,9 +4,12 @@
 // Clarity Dependency SCSS
 .clr-icon {
   &.clr-clarity-logo {
-      background-image: url(../images/clarity_logo.svg);
-      height: 36px;
-      width: 36px;
+      //background-image: url(../images/clarity_logo.svg);
+      //height: 36px;
+      //width: 36px;
+      background-image: url(../images/app_logo.png);
+      height: 75px;
+      width: 90px;
       margin-right: 11px;
   }
 }

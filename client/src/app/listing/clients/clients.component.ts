@@ -1,20 +1,30 @@
-/*
- * Copyright (c) 2016 VMware, Inc. All Rights Reserved.
- * This software is released under MIT license.
- * The full license information can be found in LICENSE in the root directory of this project.
- */
-import { Component } from '@angular/core';
+
+import {Component, OnInit} from '@angular/core';
+import {Client} from "../../models/client.model";
+import {ApplicationService} from "../../services/application.service";
 
 @Component({
     styleUrls: ['./clients.component.scss'],
     templateUrl: './clients.component.html'
 })
-export class ClientsComponent {
+export class ClientsComponent implements OnInit {
 
-    open: Boolean = false;
-    lat: number = 43.703769;
-    lng: number = 7.270230;
-    lat2: number = 43.703769;
-    lng2: number = 7.270230;
+    tabClients: Client[];
+        // Array<Client>;
+
+    constructor(private appService: ApplicationService) {}
+
+    ngOnInit(): void {
+
+        this.tabClients = [];
+
+        this.appService.getClients().subscribe(
+            res => {
+                this.tabClients = res;
+                for (let entry of this.tabClients) {
+                    console.log(entry.id + " " + entry.name);
+                }
+            });
+    }
 
 }

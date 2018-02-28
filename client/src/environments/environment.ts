@@ -5,5 +5,6 @@
 
 export const environment = {
     production: false,
-    GoogleMapApiKey :  'AIzaSyAV7DXjqwhs7shkPTDk6fPIZQBZWX08KlM'
+    GoogleMapApiKey :  'AIzaSyAV7DXjqwhs7shkPTDk6fPIZQBZWX08KlM',
+    APIurl: 'http://localhost:8080/MylsNFC/webresources/'
 };

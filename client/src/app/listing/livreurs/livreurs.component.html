@@ -1,18 +1,26 @@
-<!--
- id: number;
- nom: string;
- position: Position;
--->
+<section>
+    <h1>Livreurs</h1>
+</section>
 <clr-datagrid>
+    <clr-dg-placeholder>Aucun livreurs trouvés</clr-dg-placeholder>
+    <clr-dg-action-bar>
+        <div class="btn-group">
+            <button type="button" class="btn btn-sm btn-secondary" (click)="showModal()">
+                <clr-icon shape="plus"></clr-icon>Ajouter un livreur</button>
+        </div>
+    </clr-dg-action-bar>
     <clr-dg-column>Id</clr-dg-column>
     <clr-dg-column>Nom</clr-dg-column>
-    <clr-dg-column>Position</clr-dg-column>
+    <!--<clr-dg-column>Position</clr-dg-column>-->
 
-    <clr-dg-row *ngFor="let livreur of livreurs1">
-        <clr-dg-cell>{{livreur.id}}</clr-dg-cell>
-        <clr-dg-cell>{{livreur.nom}}</clr-dg-cell>
-        <clr-dg-cell>(lat: {{livreur.position.latitude}}, lng: {{livreur.position.longitude}})</clr-dg-cell>
+
+    <clr-dg-row *clrDgItems="let livreur of tabLivreurs">
+        <clr-dg-cell>{{livreur?.id}}</clr-dg-cell>
+        <clr-dg-cell>{{livreur?.name}}</clr-dg-cell>
+        <!--<clr-dg-cell>(lat: {{livreur.position.latitude}}, lng: {{livreur.position.longitude}})</clr-dg-cell>-->
     </clr-dg-row>
 
-    <clr-dg-footer>{{livreurs1.length}} livreurs</clr-dg-footer>
+    <clr-dg-footer>{{tabLivreurs?.length}} livreurs</clr-dg-footer>
 </clr-datagrid>
+
+<app-livreur-form [showModal]="showForm" (formAction)="onFormAction($event)"></app-livreur-form>

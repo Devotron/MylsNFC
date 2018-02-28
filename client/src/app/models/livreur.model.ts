@@ -2,12 +2,12 @@ import {Position} from "./position.model";
 
 export class Livreur {
     id: number;
-    nom: string;
+    name: string;
     position: Position;
 
-    constructor(id: number, nom: string, lat: number, lng: number) {
+    constructor(id: number, name: string) {
         this.id = id;
-        this.nom = nom;
-        this.position = new Position(lat, lng);
+        this.name = name;
+        this.position = new Position(0, 0);
     }
 }

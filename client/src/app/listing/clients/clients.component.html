@@ -1,1 +1,25 @@
+<!--
+ id: number;
+ nom: string;
+ position: Position;
+-->
+<section>
+    <h1>Clients</h1>
+</section>
+<clr-datagrid>
+    <clr-dg-placeholder>Aucun clients trouvés</clr-dg-placeholder>
+    <clr-dg-action-bar>
+        <div class="btn-group">
+            <button type="button" class="btn btn-sm btn-secondary" (click)="onAdd()" disabled><clr-icon shape="plus"></clr-icon>Ajouter un client</button>
+        </div>
+    </clr-dg-action-bar>
+    <clr-dg-column>Id</clr-dg-column>
+    <clr-dg-column>Nom</clr-dg-column>
+
+    <clr-dg-row *clrDgItems="let client of tabClients">
+        <clr-dg-cell>{{client?.id}}</clr-dg-cell>
+        <clr-dg-cell>{{client?.name}}</clr-dg-cell>
+    </clr-dg-row>
+    <clr-dg-footer>{{tabClients?.length}} clients</clr-dg-footer>
+</clr-datagrid>
 

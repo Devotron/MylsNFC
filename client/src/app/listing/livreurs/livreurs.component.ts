@@ -1,20 +1,58 @@
 
-import { Component } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Livreur} from "app/models/livreur.model";
-import {livreurs} from "../../models/mocks";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {ApplicationService} from "../../services/application.service";
+import {Observable} from "rxjs/Observable";
+import "rxjs/add/observable/timer";
+import {Subscription} from "rxjs/Subscription";
+import {TimerObservable} from "rxjs/observable/TimerObservable";
 
 @Component({
     styleUrls: ['./livreurs.component.scss'],
     templateUrl: './livreurs.component.html'
 })
-export class LivreursComponent {
+export class LivreursComponent implements OnInit, OnDestroy {
 
-    livreurs1 = livreurs;
+    tabLivreurs: Livreur[];
 
-    open: Boolean = false;
-    lat: number = 43.703769;
-    lng: number = 7.270230;
-    lat2: number = 43.703769;
-    lng2: number = 7.270230;
+    showForm: Boolean = false;
 
+    private subscription: Subscription;
+
+    constructor(private appService: ApplicationService) {}
+
+    ngOnInit(): void {
+        this.tabLivreurs = [];
+        this.loadData();
+        let timer = TimerObservable.create(2000, 5000);
+        this.subscription = timer.subscribe(t => {
+            this.loadData();
+        });
+    }
+
+    private loadData(): void {
+        this.appService.getLivreurs().subscribe(
+            res => {
+                this.tabLivreurs = res;
+                for (let entry of this.tabLivreurs) {
+                    console.log(entry.id + " " + entry.name);
+                }
+            });
+    }
+
+    showModal() {
+        this.showForm = true;
+    }
+
+    onFormAction() {
+        this.showForm = false;
+        console.log("Form action");
+
+        this.loadData();
+    }
+
+    ngOnDestroy() {
+        this.subscription.unsubscribe();
+    }
 }

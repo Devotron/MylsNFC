@@ -9,4 +9,9 @@ import { Router } from '@angular/router';
 export class AppComponent {
     constructor(private router: Router) {
     }
+
+    /* TODO: 1 - service de recherche de colis (search bar)
+       TODO: 2 - appel API REST
+       TODO: 3- formulaire livraison
+    */
 }

@@ -1,15 +1,41 @@
+<section>
+    <h1>Livraisons</h1>
+</section>
 <clr-datagrid>
-    <clr-dg-column>Ref Livraison</clr-dg-column>
-    <clr-dg-column>Ref Colis</clr-dg-column>
-    <clr-dg-column>Position actuelle</clr-dg-column>
-    <clr-dg-column>Etat</clr-dg-column>
+    <clr-dg-placeholder>Aucune livraisons trouvées</clr-dg-placeholder>
+    <clr-dg-action-bar>
+        <div class="btn-group">
+            <button type="button" class="btn btn-sm btn-secondary" (click)="onAdd()" disabled><clr-icon shape="plus"></clr-icon>Ajouter une livraison</button>
+            <!--<button type="button" class="btn btn-sm btn-secondary" (click)="onDelete()" ><clr-icon shape="close"></clr-icon> Delete</button>
+            <button type="button" class="btn btn-sm btn-secondary" (click)="onEdit()" ><clr-icon shape="pencil"></clr-icon> Edit</button>-->
+        </div>
+    </clr-dg-action-bar>
 
-    <clr-dg-row *ngFor="let livraison of livraisons1">
-        <clr-dg-cell>{{livraison.id}}</clr-dg-cell>
-        <clr-dg-cell>{{livraison.nom}}</clr-dg-cell>
-        <clr-dg-cell>(lat: {{livraison}}, lng: {{livraison.position.longitude}})</clr-dg-cell>
+    <clr-dg-column>Ref Livraison</clr-dg-column>
+    <!--<clr-dg-column>Ref Colis</clr-dg-column>-->
+    <clr-dg-column>Etat</clr-dg-column>
+    <clr-dg-column>Position actuelle</clr-dg-column>
+
+    <clr-dg-row *clrDgItems="let livraison of tabLivraisons">
+
+        <!--<clr-dg-cell>{{livraison.id}}</clr-dg-cell>-->
+        <clr-dg-cell>{{livraison?.id}}</clr-dg-cell>
+        <!--<!--<clr-dg-cell>(lat: {{livraison.colis.position.latitude}}, lng: {{livraison.colis.position.longitude}})</clr-dg-cell>-->
+        <clr-dg-cell>
+            <ng-container [ngSwitch]="livraison?.state">
+            <td *ngSwitchCase="etats.EN_ATTENTE"><span class="label label-warning">En attente</span></td>
+            <td *ngSwitchCase="etats.EN_COURS"><span class="label label-info">En cours</span></td>
+            <td *ngSwitchCase="etats.LIVRE"><span class="label label-success">Livré</span></td>
+            <td *ngSwitchDefault>default</td>
+            </ng-container>
+        </clr-dg-cell>
+        <clr-dg-cell>
+            <button type="button" class="btn btn-link btn-icon" (click)="navigateToMap(livraison?.id)">
+                <clr-icon shape="map-marker"></clr-icon>
+            </button>
+        </clr-dg-cell>
     </clr-dg-row>
 
-    <clr-dg-footer>{{livreurs1.length}} livreurs</clr-dg-footer>
+    <clr-dg-footer>{{tabLivraisons?.length}} livraisons</clr-dg-footer>
 </clr-datagrid>
 

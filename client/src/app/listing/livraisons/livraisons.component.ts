@@ -1,18 +1,36 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {livraisons} from "../../models/mocks";
+import {EtatLivraison, Livraison} from "../../models/livraison.model";
+import {ApplicationService} from "../../services/application.service";
+import {Colis} from "../../models/colis.model";
 
 @Component({
     styleUrls: ['./livraisons.component.scss'],
     templateUrl: './livraisons.component.html'
 })
-export class LivraisonsComponent {
+export class LivraisonsComponent implements OnInit {
 
-    Livraisons1 = livraisons;
-
+    public tabLivraisons: Colis[];
+    public etats = EtatLivraison;
     open: Boolean = false;
-    lat: number = 43.703769;
-    lng: number = 7.270230;
-    lat2: number = 43.703769;
-    lng2: number = 7.270230;
+    constructor(private applicationService: ApplicationService) {}
+
+    ngOnInit(): void {
+        this.tabLivraisons = [];
+
+        this.applicationService.getLivraisons().subscribe(
+            res => {
+                this.tabLivraisons  = res;
+                for (let entry of this.tabLivraisons ) {
+                    console.log(entry.id + " " + entry.state);
+                }
+        });
+    }
+
+
+
+    navigateToMap(id: number) {
+        this.applicationService.navigateToMap(id, false);
+    }
 
 }

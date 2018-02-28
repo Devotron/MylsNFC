@@ -1,12 +1,9 @@
-/*
- * Copyright (c) 2016 VMware, Inc. All Rights Reserved.
- * This software is released under MIT license.
- * The full license information can be found in LICENSE in the root directory of this project.
- */
 import {Component, OnInit} from '@angular/core';
 import {Colis} from "../models/colis.model";
-import {colis} from "../models/mocks";
 import {Observable} from "rxjs/Observable";
+import {ApplicationService} from "../services/application.service";
+import {ActivatedRoute} from "@angular/router";
+import {EtatLivraison} from "../models/livraison.model";
 
 @Component({
     styleUrls: ['./map.component.scss'],
@@ -15,18 +12,26 @@ import {Observable} from "rxjs/Observable";
 export class MapComponent implements OnInit {
 
     livraison: Colis;
+    public etats = EtatLivraison;
     private data: Observable<{lat: number, long: number}>;
     private anyErrors: boolean;
     private finished: boolean;
 
     private values: Array<{lat: number, long: number}>;
-    title: string = 'My first AGM project';
-    // 43.705316, 7.269236
+    // Demo
     lat: number = 43.703769;
     lng: number = 7.270230;
     open: Boolean = false;
 
+    constructor(private appService: ApplicationService, private route: ActivatedRoute) {}
+
     ngOnInit(): void {
+
+        this.route.params.subscribe(params => {
+            console.log(params);
+            console.log(+params['id']);
+            this.loadData(+params['id']);
+        });
 
         this.values = [// 43.704518, 7.264166
             {lat: 43.705316, long: 7.269236},
@@ -58,7 +63,13 @@ export class MapComponent implements OnInit {
             () => this.finished = true
         );
 
-        this.livraison = colis[0];
+    }
+
+    loadData(id: number) {
+
+        this.appService.getLivraison(id).subscribe(res => {
+            this.livraison = res;
+        })
     }
 
 }
