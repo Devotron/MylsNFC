@@ -10,9 +10,9 @@ Une première partie API REST JEE et client Angular afin de poser les bases du p
 - Rendu NFC : voir la release NFC 
 
 Equipe : 
-- Michaël Gianfaldone,
-- Florian Muller,
-- Frédéric Testanière.
+- Michaël Gianfaldone (Partie cliente Angular),
+- Florian Muller (Android NFC),
+- Frédéric Testanière (API REST Netbeans).
 
 
 
